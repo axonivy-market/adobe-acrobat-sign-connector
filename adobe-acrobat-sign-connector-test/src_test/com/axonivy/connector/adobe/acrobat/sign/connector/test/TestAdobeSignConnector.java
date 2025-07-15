@@ -14,8 +14,8 @@ public class TestAdobeSignConnector {
 	protected static final String AGREEMENTS = "Agreements";
 
 	protected void prepareRestClient(IApplication app, AppFixture fixture, String clientName) {
-		fixture.var("adobe-acrobat-sign-connector.host", "TESTHOST");
-		fixture.var("adobe-acrobat-sign-connector.integrationKey", "TESTUSER");
+		fixture.var("adobeAcrobatSignConnector.host", "TESTHOST");
+		fixture.var("adobeAcrobatSignConnector.integrationKey", "TESTUSER");
 		RestClient restClient = RestClients.of(app).find(clientName);
 		// change created client: use test url and a slightly different version of
 		// the

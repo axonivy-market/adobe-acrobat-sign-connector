@@ -3,23 +3,23 @@ package com.axonivy.connector.adobe.acrobat.sign.connector.enums;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public enum AdobeVariable {
-	BASE_URI("adobe-acrobat-sign-connector.baseUri"),
-	HOST("adobe-acrobat-sign-connector.host"),
-	INTEGRATION_KEY("adobe-acrobat-sign-connector.integrationKey"),
-	RETURN_PAGE("adobe-acrobat-sign-connector.returnPage"),
-	PERMISSIONS("adobe-acrobat-sign-connector.permissions"),
-	CLIENT_ID("adobe-acrobat-sign-connector.clientId"),
-	CLIENT_SECRET("adobe-acrobat-sign-connector.clientSecret"),
-	APP_ID("adobe-acrobat-sign-connector.appId"),
-	SECRET_KEY("adobe-acrobat-sign-connector.secretKey"),
-	USE_APP_PERMISSIONS("adobe-acrobat-sign-connector.useAppPermissions"),
-	CODE("adobe-acrobat-sign-connector.code"),
-	USE_USER_PASS_FLOW_ENABLED("adobe-acrobat-sign-connector.useUserPassFlow.enabled"),
-	USE_USER_PASS_FLOW_USER("adobe-acrobat-sign-connector.useUserPassFlow.user"),
-	USE_USER_PASS_FLOW_PASS("adobe-acrobat-sign-connector.useUserPassFlow.pass"),
-	OAUTH_TOKEN("adobe-acrobat-sign-connector.oauthToken"),
-	ACCESS_TOKEN("adobe-acrobat-sign-connector.accessToken"),
-	AUTHENTICATION_URI("adobe-acrobat-sign-connector.authenticationUri");
+	BASE_URI("adobeAcrobatSignConnector.baseUri"),
+	HOST("adobeAcrobatSignConnector.host"),
+	INTEGRATION_KEY("adobeAcrobatSignConnector.integrationKey"),
+	RETURN_PAGE("adobeAcrobatSignConnector.returnPage"),
+	PERMISSIONS("adobeAcrobatSignConnector.permissions"),
+	CLIENT_ID("adobeAcrobatSignConnector.clientId"),
+	CLIENT_SECRET("adobeAcrobatSignConnector.clientSecret"),
+	APP_ID("adobeAcrobatSignConnector.appId"),
+	SECRET_KEY("adobeAcrobatSignConnector.secretKey"),
+	USE_APP_PERMISSIONS("adobeAcrobatSignConnector.useAppPermissions"),
+	CODE("adobeAcrobatSignConnector.code"),
+	USE_USER_PASS_FLOW_ENABLED("adobeAcrobatSignConnector.useUserPassFlow.enabled"),
+	USE_USER_PASS_FLOW_USER("adobeAcrobatSignConnector.useUserPassFlow.user"),
+	USE_USER_PASS_FLOW_PASS("adobeAcrobatSignConnector.useUserPassFlow.pass"),
+	OAUTH_TOKEN("adobeAcrobatSignConnector.oauthToken"),
+	ACCESS_TOKEN("adobeAcrobatSignConnector.accessToken"),
+	AUTHENTICATION_URI("adobeAcrobatSignConnector.authenticationUri");
 
 	private String variableName;
 
