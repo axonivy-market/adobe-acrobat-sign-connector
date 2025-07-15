@@ -158,7 +158,7 @@
           "id" : "f12",
           "type" : "ErrorBoundaryEvent",
           "visual" : {
-            "at" : { "x" : 312, "y" : 232 }
+            "at" : { "x" : 312, "y" : 234 }
           },
           "connect" : [
             { "id" : "f13", "to" : "f10", "via" : [ { "x" : 472, "y" : 232 } ] }
@@ -330,6 +330,14 @@
       "boundaries" : [ {
           "id" : "f23",
           "type" : "ErrorBoundaryEvent",
+          "config" : {
+            "output" : {
+              "map" : {
+                "out" : "in",
+                "out.error" : "#error"
+              }
+            }
+          },
           "visual" : {
             "at" : { "x" : 312, "y" : 472 }
           },
