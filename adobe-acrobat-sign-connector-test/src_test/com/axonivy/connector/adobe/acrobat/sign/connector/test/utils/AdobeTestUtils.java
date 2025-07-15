@@ -32,14 +32,14 @@ public class AdobeTestUtils {
     String intergationKey = System.getProperty(AdobeTestConstants.INTERGRATION_KEY);
     String returnPage = System.getProperty(AdobeTestConstants.RETURN_PAGE);
 
-    fixture.var("adobe-acrobat-sign-connector.host", host);
-    fixture.var("adobe-acrobat-sign-connector.integrationKey", intergationKey);
-    fixture.var("adobe-acrobat-sign-connector.returnPage", returnPage);
+    fixture.var("adobeAcrobatSignConnector.host", host);
+    fixture.var("adobeAcrobatSignConnector.integrationKey", intergationKey);
+    fixture.var("adobeAcrobatSignConnector.returnPage", returnPage);
   }
 
   public static void setUpConfigForMockServer(AppFixture fixture, IApplication app, String clientName) {
-    fixture.var("adobe-acrobat-sign-connector.host", "TESTHOST");
-    fixture.var("adobe-acrobat-sign-connector.integrationKey", "TESTUSER");
+    fixture.var("adobeAcrobatSignConnector.host", "TESTHOST");
+    fixture.var("adobeAcrobatSignConnector.integrationKey", "TESTUSER");
     RestClient restClient = RestClients.of(app).find(clientName);
     // change created client: use test url and a slightly different version of the DocuWare Auth feature
     Builder builder = RestClient.create(restClient.name()).uuid(restClient.uniqueId())
