@@ -6,10 +6,17 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestTemplate;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.ExtensionContext;
 
 import com.axonivy.connector.adobe.acrobat.sign.connector.rest.DownloadResult;
 import com.axonivy.connector.adobe.acrobat.sign.connector.service.AdobeSignService;
+import com.axonivy.connector.adobe.acrobat.sign.connector.test.constants.AdobeTestConstants;
+import com.axonivy.connector.adobe.acrobat.sign.connector.test.context.MultiEnvironmentContextProvider;
+import com.axonivy.connector.adobe.acrobat.sign.connector.test.utils.AdobeTestUtils;
 import com.axonivy.connector.adobe.acrobat.sign.connector.AgreementsData;
 
 import api.rest.v6.client.AgreementCreationInfo;
@@ -27,117 +34,124 @@ import ch.ivyteam.ivy.bpm.engine.client.element.BpmProcess;
 import ch.ivyteam.ivy.bpm.exec.client.IvyProcessTest;
 import ch.ivyteam.ivy.environment.AppFixture;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.ISession;
+import ch.ivyteam.ivy.rest.client.RestClients;
 
 @IvyProcessTest(enableWebServer = true)
-public class TestAgreementsService extends TestAdobeSignConnector {
+@ExtendWith(MultiEnvironmentContextProvider.class)
+public class TestAgreementsService {
 
-	private static final BpmElement testeeCreateAgreement = BpmProcess.path("connector/Agreements")
-			.elementName("createAgreement(AgreementCreationInfo)");
+  protected static final String AGREEMENTS = "Agreements";
+  private static final BpmElement testeeCreateAgreement =
+      BpmProcess.path("connector/Agreements").elementName("createAgreement(AgreementCreationInfo)");
 
-	private static final BpmElement testeeGetDocuments = BpmProcess.path("connector/Agreements")
-			.elementName("getDocuments(String)");
+  private static final BpmElement testeeGetDocuments =
+      BpmProcess.path("connector/Agreements").elementName("getDocuments(String)");
 
-	private static final BpmElement testeeDownloadDocument = BpmProcess.path("connector/Agreements")
-			.elementName("dowloadDocument(String, String, String, Boolean)");
+  private static final BpmElement testeeDownloadDocument =
+      BpmProcess.path("connector/Agreements").elementName("dowloadDocument(String, String, String, Boolean)");
 
-	private static final BpmElement testeeGetSigningUrls = BpmProcess.path("connector/Agreements")
-			.elementName("getSigningURLs(String,String)");
+  private static final BpmElement testeeGetSigningUrls =
+      BpmProcess.path("connector/Agreements").elementName("getSigningURLs(String,String)");
 
-	@Test
-	public void createAgreement(BpmClient bpmClient, ISession session, AppFixture fixture, IApplication app)
-			throws IOException {
+  @BeforeEach
+  public void beforeEach(ExtensionContext context, AppFixture fixture, IApplication app) {
+    AdobeTestUtils.setUpConfigForContext(context.getDisplayName(), fixture, app, AGREEMENTS);
+  }
 
-		prepareRestClient(app, fixture, AGREEMENTS);
+  @AfterEach
+  void afterEach(AppFixture fixture, IApplication app) {
+    RestClients clients = RestClients.of(app);
+    clients.remove(AGREEMENTS);
+  }
 
-		AgreementCreationInfo agreement = createTestAgreement();
+  @TestTemplate
+  public void createAgreement(BpmClient bpmClient, ExtensionContext context) throws IOException {
+    AgreementCreationInfo agreement = createTestAgreement();
+    ExecutionResult result =
+        bpmClient.start().subProcess(testeeCreateAgreement).withParam("agreement", agreement).execute();
+    AgreementsData data = result.data().last();
+    if (context.getDisplayName().equals(AdobeTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME)) {
+      int error = (int) data.getError().getAttribute("RestClientResponseStatusCode");
+      assertThat(error).isEqualTo(404);
+    } else {
+      AgreementCreationResponse response = data.getAgreementCreationResponse();
+      assertThat(response).isNotNull();
+      assertThat(response.getId()).isNotEmpty();
+    }
+  }
 
-		ExecutionResult result = bpmClient.start().subProcess(testeeCreateAgreement).withParam("agreement", agreement)
-				.execute();
-		AgreementsData data = result.data().last();
-		AgreementCreationResponse response = data.getAgreementCreationResponse();
-		assertThat(response).isNotNull();
-		assertThat(response.getId()).isNotEmpty();
-	}
+  @TestTemplate
+  public void getDocuments(BpmClient bpmClient, ExtensionContext context) throws IOException {
+    String agreementId = "test-agreement-id";
 
-	@Test
-	public void getDocuments(BpmClient bpmClient, ISession session, AppFixture fixture, IApplication app)
-			throws IOException {
+    ExecutionResult result =
+        bpmClient.start().subProcess(testeeGetDocuments).withParam("agreementId", agreementId).execute();
+    AgreementsData data = result.data().last();
+    if (context.getDisplayName().equals(AdobeTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME)) {
+      int error = (int) data.getError().getAttribute("RestClientResponseStatusCode");
+      assertThat(error).isEqualTo(404);
+    } else {
+      AgreementDocuments response = data.getDocuments();
+      assertThat(response).isNotNull();
+      assertThat(response.getDocuments()).isNotEmpty();
+    }
+  }
 
-		prepareRestClient(app, fixture, AGREEMENTS);
+  @TestTemplate
+  public void downloadDocument(BpmClient bpmClient, ExtensionContext context) throws IOException {
+    if (context.getDisplayName().equals(AdobeTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME)) {
+      return; // Skip test in real-call context
+    }
+    String agreementId = "test-agreement-id";
+    String documentId = "test-document-id";
+    String filename = "sample.pdf";
+    Boolean asFile = Boolean.TRUE;
 
-		String agreementId = "test-agreement-id";
+    ExecutionResult result = bpmClient.start().subProcess(testeeDownloadDocument).withParam("agreementId", agreementId)
+        .withParam("documentId", documentId).withParam("filename", filename).withParam("asFile", asFile).execute();
+    AgreementsData data = result.data().last();
+    DownloadResult downloadResult = data.getDownload();
+    if (downloadResult.getError() != null) {
+      Ivy.log().error(downloadResult.getError());
+    }
+    assertThat(downloadResult.getFile()).isNotNull();
+  }
 
-		ExecutionResult result = bpmClient.start().subProcess(testeeGetDocuments).withParam("agreementId", agreementId)
-				.execute();
-		AgreementsData data = result.data().last();
-		AgreementDocuments response = data.getDocuments();
-		assertThat(response).isNotNull();
-		assertThat(response.getDocuments()).isNotEmpty();
-	}
+  @TestTemplate
+  public void getSigningUrls(BpmClient bpmClient, ExtensionContext context) throws IOException {
+    String agreementId = "test-agreement-id";
+    String frameParent = "test";
+    ExecutionResult result = bpmClient.start().subProcess(testeeGetSigningUrls).withParam("agreementId", agreementId)
+        .withParam("frameParent", frameParent).execute();
+    AgreementsData data = result.data().last();
+    if (context.getDisplayName().equals(AdobeTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME)) {
+      int error = (int) data.getError().getAttribute("RestClientResponseStatusCode");
+      assertThat(error).isEqualTo(404);
+    } else {
+      List<SigningUrlResponseSigningUrlSetInfos> signingUrls = data.getSigningUrls();
+      assertThat(signingUrls).isNotEmpty();
+    }
+  }
 
-	@Test
-	public void downloadDocument(BpmClient bpmClient, ISession session, AppFixture fixture, IApplication app)
-			throws IOException {
+  private AgreementCreationInfo createTestAgreement() {
+    AgreementCreationInfo agreement = new AgreementCreationInfo();
 
-		prepareRestClient(app, fixture, AGREEMENTS);
+    agreement.setName("test name");
+    agreement.setMessage("Please sign this document!");
+    agreement.setSignatureType(SignatureTypeEnum.ESIGN);
+    agreement.setState(StateEnum.IN_PROCESS);
 
-		String agreementId = "test-agreement-id";
-		String documentId = "test-document-id";
-		String filename = "sample.pdf";
-		Boolean asFile = Boolean.TRUE;
+    // add signers
+    AdobeSignService.getInstance().createParticipantInfoForEmail(Arrays.asList("testEmail@test.test"), RoleEnum.SIGNER);
+    agreement.setParticipantSetsInfo(AdobeSignService.getInstance()
+        .createParticipantInfoForEmail(Arrays.asList("testEmail@test.test"), RoleEnum.SIGNER));
 
-		ExecutionResult result = bpmClient.start().subProcess(testeeDownloadDocument)
-				.withParam("agreementId", agreementId).withParam("documentId", documentId)
-				.withParam("filename", filename).withParam("asFile", asFile).execute();
-		AgreementsData data = result.data().last();
-		DownloadResult downloadResult = data.getDownload();
-		assertThat(downloadResult).isNotNull();
-		if (downloadResult.getError() != null) {
-			Ivy.log().error(downloadResult.getError());
-		}
-		assertThat(downloadResult.getFile()).isNotNull();
-	}
+    // add documentIds - need to be already transferred with the upload document
+    // service
+    agreement
+        .setFileInfos(AdobeSignService.getInstance().createFileInfosForDocumentIds(Arrays.asList("test-document-id")));
 
-	@Test
-	public void getSigningUrls(BpmClient bpmClient, ISession session, AppFixture fixture, IApplication app)
-			throws IOException {
-
-		prepareRestClient(app, fixture, AGREEMENTS);
-
-		String agreementId = "test-agreement-id";
-		String frameParent = "test";
-
-		ExecutionResult result = bpmClient.start().subProcess(testeeGetSigningUrls)
-				.withParam("agreementId", agreementId).withParam("frameParent", frameParent).execute();
-		AgreementsData data = result.data().last();
-
-		List<SigningUrlResponseSigningUrlSetInfos> signingUrls = data.getSigningUrls();
-
-		assertThat(signingUrls).isNotNull();
-		assertThat(signingUrls).isNotEmpty();
-	}
-
-	private AgreementCreationInfo createTestAgreement() {
-		AgreementCreationInfo agreement = new AgreementCreationInfo();
-
-		agreement.setName("test name");
-		agreement.setMessage("Please sign this document!");
-		agreement.setSignatureType(SignatureTypeEnum.ESIGN);
-		agreement.setState(StateEnum.IN_PROCESS);
-
-		// add signers
-		AdobeSignService.getInstance().createParticipantInfoForEmail(Arrays.asList("testEmail@test.test"),
-				RoleEnum.SIGNER);
-		agreement.setParticipantSetsInfo(AdobeSignService.getInstance()
-				.createParticipantInfoForEmail(Arrays.asList("testEmail@test.test"), RoleEnum.SIGNER));
-
-		// add documentIds - need to be already transferred with the upload document
-		// service
-		agreement.setFileInfos(
-				AdobeSignService.getInstance().createFileInfosForDocumentIds(Arrays.asList("test-document-id")));
-
-		agreement.setEmailOption(AdobeSignService.getInstance().createAllDisabledSendOptions());
-		return agreement;
-	}
+    agreement.setEmailOption(AdobeSignService.getInstance().createAllDisabledSendOptions());
+    return agreement;
+  }
 }
