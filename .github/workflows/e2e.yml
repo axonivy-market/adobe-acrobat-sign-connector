@@ -1,10 +1,8 @@
-name: CI-Build
+name: E2E-Build
 
 on:
-  push:
-  pull_request:
   schedule:
-    - cron:  '21 21 * * *'
+    - cron:  '0 1 * * 1'
   workflow_dispatch:
 
 permissions:
@@ -15,4 +13,4 @@ jobs:
   build:
     uses: axonivy-market/github-workflows/.github/workflows/ci.yml@v6
     secrets:
-      mvnArgs: -Dadobe.host=${{secrets.HOST}} -Dadobe.integrationKey=${{secrets.INTERRATION_KEY}} -Dadobe.returnPage=${{secrets.RETURN_PAGE}}
+      mvnArgs: -Dadobe.host=${{secrets.HOST}} -Dadobe.integrationKey=${{secrets.INTERRATION_KEY}} -Dadobe.returnPage=${{secrets.RETURN_PAGE}} -DtestEnvironment=E2E

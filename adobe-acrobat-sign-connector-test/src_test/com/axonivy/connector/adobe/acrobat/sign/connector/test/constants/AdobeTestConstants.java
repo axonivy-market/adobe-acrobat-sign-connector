@@ -7,5 +7,5 @@ public class AdobeTestConstants {
   public static final String RETURN_PAGE = "returnPage";
   public static final String HOST = "host";
   public static final String END_TO_END_TESTING_ENVIRONMENT_KEY = "testEnvironment";
-  public static final String END_TO_END_TESTING_ENVIRONMENT_VALUE = "E2E Testing";
+  public static final String END_TO_END_TESTING_ENVIRONMENT_VALUE = "E2E";
 }
