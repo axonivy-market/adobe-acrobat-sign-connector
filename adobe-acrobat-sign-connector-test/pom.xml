@@ -75,6 +75,7 @@
             <host>${adobe.host}</host>
             <integrationKey>${adobe.integrationKey}</integrationKey>
             <returnPage>${adobe.returnPage}</returnPage>
+            <testEnvironment>${testEnvironment}</testEnvironment>
           </systemPropertyVariables>
           <statelessTestsetReporter implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5Xml30StatelessReporter">
             <disable>false</disable>
