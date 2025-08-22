@@ -1,22 +1,18 @@
 package com.axonivy.connector.adobe.acrobat.sign.connector.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
 import com.axonivy.connector.adobe.acrobat.sign.connector.rest.DownloadResult;
 import com.axonivy.connector.adobe.acrobat.sign.connector.service.AdobeSignService;
-import com.axonivy.connector.adobe.acrobat.sign.connector.test.constants.AdobeTestConstants;
-import com.axonivy.connector.adobe.acrobat.sign.connector.test.context.MultiEnvironmentContextProvider;
-import com.axonivy.connector.adobe.acrobat.sign.connector.test.utils.AdobeTestUtils;
+import com.axonivy.utils.e2etest.context.MultiEnvironmentContextProvider;
 import com.axonivy.connector.adobe.acrobat.sign.connector.AgreementsData;
 
 import api.rest.v6.client.AgreementCreationInfo;
@@ -32,13 +28,12 @@ import ch.ivyteam.ivy.bpm.engine.client.ExecutionResult;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmElement;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmProcess;
 import ch.ivyteam.ivy.bpm.exec.client.IvyProcessTest;
-import ch.ivyteam.ivy.environment.AppFixture;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.rest.client.RestClients;
 
 @IvyProcessTest(enableWebServer = true)
 @ExtendWith(MultiEnvironmentContextProvider.class)
-public class TestAgreementsService {
+public class TestAgreementsService extends BaseSetup {
 
   protected static final String AGREEMENTS = "Agreements";
   private static final BpmElement testeeCreateAgreement =
@@ -53,13 +48,9 @@ public class TestAgreementsService {
   private static final BpmElement testeeGetSigningUrls =
       BpmProcess.path("connector/Agreements").elementName("getSigningURLs(String,String)");
 
-  @BeforeEach
-  public void beforeEach(ExtensionContext context, AppFixture fixture, IApplication app) {
-    AdobeTestUtils.setUpConfigForContext(context.getDisplayName(), fixture, app, AGREEMENTS);
-  }
 
   @AfterEach
-  void afterEach(AppFixture fixture, IApplication app) {
+  void afterEach(IApplication app) {
     RestClients clients = RestClients.of(app);
     clients.remove(AGREEMENTS);
   }
@@ -70,7 +61,7 @@ public class TestAgreementsService {
     ExecutionResult result =
         bpmClient.start().subProcess(testeeCreateAgreement).withParam("agreement", agreement).execute();
     AgreementsData data = result.data().last();
-    if (context.getDisplayName().equals(AdobeTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME)) {
+    if (isRealTest) {
       int error = (int) data.getError().getAttribute("RestClientResponseStatusCode");
       assertThat(error).isEqualTo(404);
     } else {
@@ -87,7 +78,7 @@ public class TestAgreementsService {
     ExecutionResult result =
         bpmClient.start().subProcess(testeeGetDocuments).withParam("agreementId", agreementId).execute();
     AgreementsData data = result.data().last();
-    if (context.getDisplayName().equals(AdobeTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME)) {
+    if (isRealTest) {
       int error = (int) data.getError().getAttribute("RestClientResponseStatusCode");
       assertThat(error).isEqualTo(404);
     } else {
@@ -99,7 +90,7 @@ public class TestAgreementsService {
 
   @TestTemplate
   public void downloadDocument(BpmClient bpmClient, ExtensionContext context) throws IOException {
-    if (context.getDisplayName().equals(AdobeTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME)) {
+    if (isRealTest) {
       return; // Skip test in real-call context
     }
     String agreementId = "test-agreement-id";
@@ -124,7 +115,7 @@ public class TestAgreementsService {
     ExecutionResult result = bpmClient.start().subProcess(testeeGetSigningUrls).withParam("agreementId", agreementId)
         .withParam("frameParent", frameParent).execute();
     AgreementsData data = result.data().last();
-    if (context.getDisplayName().equals(AdobeTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME)) {
+    if (isRealTest) {
       int error = (int) data.getError().getAttribute("RestClientResponseStatusCode");
       assertThat(error).isEqualTo(404);
     } else {
@@ -153,5 +144,10 @@ public class TestAgreementsService {
 
     agreement.setEmailOption(AdobeSignService.getInstance().createAllDisabledSendOptions());
     return agreement;
+  }
+
+  @Override
+  public String getClientName() {
+    return AGREEMENTS;
   }
 }
