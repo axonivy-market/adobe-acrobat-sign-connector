@@ -1,4 +1,4 @@
-# This is a German text
+# Adobe Acrobat Sign Konnektor
 
 [Adobe Sign](https://www.adobe.com/sign.html) is a cloud-based electronic
 signature service that enables users to send, sign, track, and manage signature
