@@ -1,158 +1,168 @@
 # Adobe Acrobat Sign Konnektor
 
-[Adobe Sign](https://www.adobe.com/sign.html) is a cloud-based electronic
-signature service that enables users to send, sign, track, and manage signature
-workflows digitally. With the Adobe Acrobat Sign Connector, you can integrate
-these functions conveniently and straightforwardly into your Axon Ivy processes.
+[Adobe Signieren](https://www.adobe.com/sign.html) ist eine Wolke-basisbezogene
+elektronische Unterschrift Bedienung aktiviert jener Nutzer zu senden, Indiz,
+Fährte, und fertigbringen Unterschrift workflows digital. Mit das Adobe Akrobat
+Indiz Anschluss, du kannst diese Aufgaben integrieren füglich und #unkompliziert
+verarbeitet hinein eure #Axon #Ivy.
 
-This connector:
-- provides open source code so you can easily integrate Adobe Acrobat Sign into
-  your Axon Ivy implementations
-- authenticates with OAuth2 or an integration key
-- allows you to upload PDF(s) that are signed by one or several persons
+Dieser Anschluss:
+- Versieht #offene Quelle #kodieren also kannst sicher du integrieren Adobe
+  Akrobaten Indiz hinein euren #Axon Efeu Ausführungen
+- Beglaubigt mit OAuth2 oder einen Integration Schlüssel
+- Erlaubt du zu #hochladen #PDF(s) jener ist signiert bei #man oder #mehrere
+  Personen
 
 ## Demo
 
-The demo project can be used to test the authentication and signing and the demo
-implementation can be used as inspiration for development.
+Das Demo Projekt kann sein benutzt zu testen die Authentifizierung und
+signierend und die Demo Ausführung kann sein benutzt wie Eingebung für
+Entwicklung.
 
-### How to sign a document in the Demo application
-:exclamation: The demo will work only after correct setup of the connector
-(check tab "Setup") ![demo1](images/demo1.png)
- 1. Choose and upload one or more PDF files
- 2. Enter email of 1 or 2 signers
- 3. Obtain agreement for the signers
- 4. Sign as signer 1 and (if configured) signer 2
- 5. A dialog box with the Adobe signature page opens. Create a signature in the
-    document. If several documents have been sent for signing, they are all
-    displayed here and can be signed in one step.
+### Wie zu signieren ein Dokument in den Demo Antrag
+:Ausruf: Die Demo will arbeiten nur nach richtig Einrichtung von dem Anschluss
+(Kontrolle Deckel "Einrichtung") ![demo1](images/demo1.png)
+ 1. Wähl aus und #hochladen eins oder #mehr #PDF Dateien
+ 2. Betritt #Email von 1 oder 2 #Unterfertigter
+ 3. Bekomm Abkommen für die #Unterfertigter
+ 4. Indiz wie #Unterfertigter 1 und (ob konfiguriert) #Unterfertigter 2
+ 5. Eine Zwiegespräch Schachtel mit die Adobe Unterschrift Seite öffnet. Schaff
+    eine Unterschrift in dem Dokument. Ob #mehrere Dokumente haben gewesen
+    #herbeirufen signieren, sie sind alle hier gezeigt und können sein signiert
+    in #man schreitet.
 
 ![demo1](images/demo2.png)
 
- 7. Confirm the signature with **Click to Sign**.
+ 7. Bestätig die Unterschrift mit **Klickt zu Signieren**.
 
 ![demo1](images/demo3.png)
 
- 7. The signed documents can be downloaded separately or as a combined document.
+ 7. Die #mit Vorzeichen versehen Dokumente können sein heruntergeladen gesondert
+    oder da einem verbundenen Dokument.
 
 ![demo1](images/demo4.png)
 
 
-## Setup
+## Einrichtung
 
-### Adobe Sign account creation
+### Adobe Indiz Konto Kreation
 
     An Adobe Sign account needs to be created to setup and use the connector.
 
-  1. Create a **AdobeSign** Company **Account** OR for Developer Account
-     creation use [Create Developer Account, APIs for custom applications |
-     Acrobat Sign](https://www.adobe.com/sign/developer-form.html) and follow
-     these steps:
+  1. Schaff ein **AdobeSign** Gesellschaft **Konto** ODER für Entwickler Konto
+     Kreation Nutzung [Schafft Entwickler Konto, APIs für #benutzerdefiniert
+     Anträge | Akrobat Indiz](https://www.adobe.com/sign/developer-form.html)
+     und folgen diese Stufen:
 
-     a. Fill in the form with personal and business data + continue
-     ![fill-account-info](images/createAccountFillInfo.png)
+     Ein. Setz ein die Form mit persönlich und #dienstlich #Daten + dauert fort
+     ![Füllen-Konto-info](images/createAccountFillInfo.png)
 
-     b. Provide a password + continue
-     ![fill-password](images/createAccountPassword.png)
+     b. Versieh ein Passwort + dauert fort
+     ![Füllen-Passwort](images/createAccountPassword.png)
 
-     c. Provide date of birth + continue
-     ![fill-birth-date](images/createAccountBirthDate.png)
+     c. Versieh Datum von Geburt + dauert fort
+     ![Füllen-Geburt-datier](images/createAccountBirthDate.png)
 
-     d. You will then receive a verification code. Enter the code and the
-     process will continue automatically
-     ![verification-code](images/createAccountVerificationCode.png)
+     d. Du willst empfangen keinen Verifikation Code. Betritt den Code und den
+     Arbeitsgang wollen fortdauern automatisch
+     ![Verifikation-#kodieren](images/createAccountVerificationCode.png)
 
-     e. Developer account is created
-     ![account-finished](images/createAccountFinished.png)
+     e. Entwickler Konto ist geschafft
+     ![Konto-fertig](images/createAccountFinished.png)
 
-Adobe Sign provides 2 options for authentication. (See Setup section)
+Adobe Indiz versieht 2 Optionen für Authentifizierung. (Sieht Einrichtung
+Sektion)
 
- 1. Integration Key
+ 1. Integration Schlüssel
  2. OAuth2
 
-To setup and use the Adobe Sign Connector it needs to be connected with Adobe.
-An Adobe administration account needs to be created. (See Adobe Sign account
-creation)
+Zu Einrichtung und benutzen die Adobe Indiz Anschluss braucht es zu sein
+gekoppelt mit Adobe. Ein Adobe Administration Konto Notwendigkeiten zu sein
+geschafft. (Sehen Adobe Indiz Konto Kreation)
 
-### Admin Setup Page
-Adobe Sign Connector provides a setup page for easy setup of the connector and
-setup of the authentication. To be able to open the admin setup page the admin
-user needs to own `ADOBE_ESIGN_ADMIN` role which is part of the connector.
-![admin-page](images/adminPage.png)
+### Admin Einrichtung Seite
+Adobe Indiz Anschluss versieht eine Einrichtung Seite für leicht Einrichtung von
+dem Anschluss und Einrichtung von der Authentifizierung. Zu können öffnen das
+admin Einrichtung Seite die admin Nutzer Notwendigkeiten zu besitzen
+`ADOBE_ESIGN_ADMIN` Rolle #welche ist Teil von dem Anschluss.
+![admin-Seite](images/adminPage.png)
 
-#### General
-| Variable name                        | Description                                                    |
-| ------------------------------------ | -------------------------------------------------------------- |
-| adobeAcrobatSignConnector.host       | hostname of Adobe Sign server                                  |
-| adobeAcrobatSignConnector.returnPage | relative part of URL that is called after singing was finished |
+#### Allgemein
+| Variabler Name                       | Steckbrief                                                    |
+| ------------------------------------ | ------------------------------------------------------------- |
+| adobeAcrobatSignConnector.Gastgeber  | hostname Von Adobe Indiz Server                               |
+| adobeAcrobatSignConnector.returnPage | Bezüglicher Teil von URL jener heißt nach #sengen war beendet |
 
-#### Integration Key
-:exclamation: If the integration key is set, OAuth is deactivated for the
-connector. If you want to use OAuth for the connector, leave the integration key
-empty :exclamation:
-| Variable name                            | Description                                   |
-| ---------------------------------------- | --------------------------------------------- |
-| adobeAcrobatSignConnector.integrationKey | Integration key from Adobe Sign configuration |
+#### Integration Schlüssel
+:Ausruf: Ob der Integration Schlüssel ist gesetzt, OAuth ist #deaktivieren für
+den Anschluss. Ob du möchtest benutzen OAuth für den Anschluss, verlass den
+Integration Schlüssel leert aus :Ausruf:
+| Variabler Name                           | Steckbrief                                          |
+| ---------------------------------------- | --------------------------------------------------- |
+| adobeAcrobatSignConnector.integrationKey | Integration Schlüssel von Adobe Indiz Konfiguration |
 
-##### How to get an Integration Key
+##### Wie zu bekommen einen Integration Schlüssel
 
- 1. Go to your Adobe Sign account page: https://secure.adobesign.com/account/
- 2. Open **Access Tokens** configuration
-    ![access-tokens](images/integrationKey1.png)
- 3. Create new integration key
-    ![create-integration-key](images/integrationKey2.png)
- 4. Copy the integration key to the admin setup page
-    ![copy-integration-key](images/integrationKey3.png)
+ 1. Geh zu eure Adobe Indiz Konto Seite: Https://Befestig.adobesign.com/Konto/
+ 2. Öffne **Zugang Automatenmünzen** Konfiguration
+    ![Zugang-Automatenmünzen](images/integrationKey1.png)
+ 3. Schaff neuen Integration Schlüssel
+    ![Schaffen-Integration-Schlüssel](images/integrationKey2.png)
+ 4. Kopier den Integration Schlüssel zu den admin Einrichtung Seite
+    ![Kopie-Integration-Schlüssel](images/integrationKey3.png)
 
 #### Oauth
-Adobe API doc references for OAuth
- 1. https://secure.adobesign.com/public/static/oauthDoc.jsp
- 2. https://opensource.adobe.com/acrobat-sign/developer_guide/oauth.html
+Adobe API doc Verweise für OAuth
+ 1. Https://Befestig.adobesign.com/Öffentliche/Statik/oauthDoc.jsp
+ 2. Https://opensource.adobe.com/Akrobat-Indiz/Entwickler_steuert/oauth.html
 
-##### OAuth API Application setup
-An API Application needs to be setup at Adobe Sign admin account before OAuth
-can be configured in the connector.
- 1. Go to your Adobe Sign account page: https://secure.adobesign.com/account/
- 2. Go to **API Applications** configuration
-    ![api-applications](images/oauth1.png)
- 3. Create new API Application. Set the Name, Display Name and Domain
-    ![new-application](images/oauth2.png)
- 4. Open the newly created Application and copy ID and Secret to the connector's
-    Admin Setup page a. Application ID = `adobeAcrobatSignConnector.clientId` b.
-    Client Secret = `adobeAcrobatSignConnector.clientSecret`
-    ![application-detail](images/oauth3.png)
-5. Open **Configure OAuth for Application** for your application a. Copy
-   **Redirect URI** from connector's Admin Setup Page and paste it to the
-   Application Configuration b. Enable persmissions that can be requested from
-   this Application ![application-oauth](images/oauth4.png)
+##### OAuth API Antrag Einrichtung
+Ein API Antrag Notwendigkeiten zu sein Einrichtung an Adobe Signiert admin
+verrechnet bevor OAuth kann sein konfiguriert in dem Anschluss.
+ 1. Geh zu eure Adobe Indiz Konto Seite: Https://Befestig.adobesign.com/Konto/
+ 2. Geh zu **API Anträge** Konfiguration ![api-Anträge](images/oauth1.png)
+ 3. Schaff neu API Antrag. Setz den Namen, Display Name und Domäne
+    ![Neu-Antrag](images/oauth2.png)
+ 4. Öffne den neulich geschaffenen Antrag und kopieren ID und Geheim zu dem
+    Anschluss Admin Einrichtung Seite eine. Antrag ID =
+    `adobeAcrobatSignConnector.clientId` b. Kunde Geheimnis =
+    `adobeAcrobatSignConnector.clientSecret` ![Antrag-weis
+    zu](images/oauth3.png)
+5. Öffne **Konfigurieren OAuth für Antrag** für euren Antrag einen. Kopie
+   **Leitet um URI** von Anschlusss Admin Einrichtung Seite und #bekleben ihm zu
+   die Antrag Konfiguration b. Aktivier persmissions jener kann sein
+   aufgefordert von diesem Antrag ![Antrag-oauth](images/oauth4.png)
 
-##### Variables and Admin Setup page for OAuth description
-| Variable name                               | Description                                                                                                                                       | Example                                                                                                                                                                                                                                                          |
-| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| adobeAcrobatSignConnector.baseUri           | Base URI for getting the access and refresh access tokens (without the `/token` or `/refresh` part)                                               | `https://api.eu2.adobesign.com/oauth/v2`                                                                                                                                                                                                                         |
-| adobeAcrobatSignConnector.authenticationUri | URL for the Authorization request (:exclamation:differs from tokens URL)                                                                          | `https://secure.eu2.adobesign.com/public/oauth/v2`                                                                                                                                                                                                               |
-| adobeAcrobatSignConnector.clientId          | Adobe API Application Client ID                                                                                                                   |                                                                                                                                                                                                                                                                  |
-| adobeAcrobatSignConnector.clientSecret      | Adobe API Application Client Secret                                                                                                               |                                                                                                                                                                                                                                                                  |
-| adobeAcrobatSignConnector.permissions       | List of permissions that will be requested for the OAuth token                                                                                    | `user_read:account user_write:account user_login:account agreement_read:account agreement_write:account agreement_send:account widget_read:account widget_write:account library_read:account library_write:account workflow_read:account workflow_write:account` |
-| adobeAcrobatSignConnector.oauthToken        | Info about the OAuth refresh token. Empty means there is no token initialized. To request a new token use the `Save and Request new Token` button |                                                                                                                                                                                                                                                                  |
-| adobeAcrobatSignConnector.accessToken       | Info about the OAuth access token.                                                                                                                |                                                                                                                                                                                                                                                                  |
-| Redirect URI                                | This URI just needs to be setup to the API Application at Adobe Sign account page. (see **OAuth API Application setup** section)                  | `https://localhost:8444/designer/pro/adobe-acrobat-sign-connector/18A83631DA63DA93/oauthResume.ivp`                                                                                                                                                              |
+##### Variablen und Admin Einrichtung Seite für OAuth Steckbrief
+| Variabler Name                              | Steckbrief                                                                                                                                                                                                        | Beispiel                                                                                                                                                                                                                                                      |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| adobeAcrobatSignConnector.baseUri           | Gründe URI für bekommen den Zugang und erfrischen Zugang Automatenmünzen (#ohne die `/Automatenmünze` oder `/erfrischt` Teil)                                                                                     | `Https://api.eu2.adobesign.com/oauth/v2`                                                                                                                                                                                                                      |
+| adobeAcrobatSignConnector.authenticationUri | URL Für die Berechtigung Bitte (:Ausruf:Weicht ab von Automatenmünzen URL)                                                                                                                                        | `Https://Befestig.eu2.adobesign.com/Öffentlich/oauth/v2`                                                                                                                                                                                                      |
+| adobeAcrobatSignConnector.clientId          | Adobe API Antrag Kunde ID                                                                                                                                                                                         |                                                                                                                                                                                                                                                               |
+| adobeAcrobatSignConnector.clientSecret      | Adobe API Antrag Kunde Geheimnis                                                                                                                                                                                  |                                                                                                                                                                                                                                                               |
+| adobeAcrobatSignConnector.Erlaubnisse       | Liste von Erlaubnisse will jener sein aufgefordert für die OAuth Automatenmünze                                                                                                                                   | `Nutzer_las:Konto Nutzer_schreibt:Konto Nutzer_Anmeldung:Konto Abkommen_las:Konto Abkommen_schreibt:Konto Abkommen_sendet:Konto Ding_las:Konto Ding_schreibt:Konto Bibliothek_las:Konto Bibliothek_schreibt:Konto workflow_las:Konto workflow_schreibt:Konto` |
+| adobeAcrobatSignConnector.oauthToken        | Info Etwa das OAuth erfrischt Automatenmünze. Leeres Mittel ist dort keine Automatenmünze initialisierte. Zu auffordern eine neue Automatenmünze Nutzung die `Speichert und Auffordern neue Automatenmünze` Knopf |                                                                                                                                                                                                                                                               |
+| adobeAcrobatSignConnector.accessToken       | Info Etwa das OAuth Zugang Automatenmünze.                                                                                                                                                                        |                                                                                                                                                                                                                                                               |
+| Leite um URI                                | Dies URI einfache Notwendigkeiten zu sein Einrichtung zu die API Antrag an Adobe Indiz Konto Seite. (Sehen **OAuth API Antrag Einrichtung** Sektion)                                                              | `Https://localhost:8444/Designer/pro/adobe-Akrobat-Indiz-Anschluss/18A83631DA63DA93/oauthResume.ivp`                                                                                                                                                          |
 
 
-##### Requesting OAuth token
-:exclamation::exclamation::exclamation: Please configure all the Variables in
-OAuth section on the Admin Setup page (see previous section) as they are
-necessary for requesting the token.
+##### #Auffordern OAuth Automatenmünze
+:Ausruf::Ausruf::Ausruf: Bitte #konfigurieren alle die Variablen herein OAuth
+Sektion weiter die Admin Einrichtung Seite (sieht vorausgehende Sektion) da sie
+sind nötig für #auffordern die Automatenmünze.
 
- 1. Click the `Save and Request new Token` button. You will be redirected to
-    Adobe Sign login page if the configuration of the Variables is correct.
-    ![save-and-request-token](images/tokenRequest1.png)
-2. Login with your Adobe Sign account ![adobe-login](images/tokenRequest2.png)
-3. After successful login you should see all the requested permissions. Click
-   **Allow Access**. ![request-permissions](images/tokenRequest3.png)
-4. The token will be retrieved and you should be redirected back to the
-   connector's Admin Setup page and should be able to see the initialized token.
-   ![token](images/tokenRequest4.png)
+ 1. Klick das `Speichern und Auffordern neue Automatenmünze` Knopf. Du willst
+    sein umgeleitet zu Adobe Indiz Anmeldung Seite ob die Konfiguration von den
+    Variablen sind #berichtigen.
+    ![Speichern-und-Bitte-Automatenmünze](images/tokenRequest1.png)
+2. Anmeldung mit eure Adobe Indiz Konto
+   ![adobe-Anmeldung](images/tokenRequest2.png)
+3. Nach erfolgreich Anmeldung solltest du sehen alle die #angefordert
+   Erlaubnisse. Klick **Erlaubt Zugang**.
+   ![Bitte-Erlaubnisse](images/tokenRequest3.png)
+4. Die Automatenmünze will sein wiedergewonnen und du solltest sein umgeleitet
+   zurück zu dem Anschluss Admin Einrichtung Seite und sollte können sehen die
+   initialisiert Automatenmünze. ![Automatenmünze](images/tokenRequest4.png)
 
-> [!NOTE] The variable path `adobe-acrobat-sign-connector` is renamed to
-> `adobeAcrobatSignConnector` from 13.
+> [!BEACHTE] Den variablen Pfad `adobe-Akrobaten-Indiz-Anschluss` ist
+> #umbenennen zu `adobeAcrobatSignConnector` von 13.
