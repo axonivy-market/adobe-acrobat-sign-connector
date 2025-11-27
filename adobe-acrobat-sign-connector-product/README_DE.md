@@ -155,8 +155,8 @@ Abschnitt), da diese für die Anforderung des Tokens erforderlich sind.
     Wenn die Konfiguration der Variablen korrekt ist, wirst Du zur Anmeldeseite
     von Adobe Sign weitergeleitet.
     ![save-and-request-token](images/tokenRequest1.png)
-2. Melde Dich mit Deinem Adobe Sign-Konto an!
-   [adobe-login](images/tokenRequest2.png)
+2. Melde Dich mit Deinem Adobe Sign-Konto an
+   ![adobe-login](images/tokenRequest2.png)
 3. Nach erfolgreicher Anmeldung solltest Du alle angeforderten Berechtigungen
    sehen. Klicke auf „ **“ (Zugriff gewähren) „** “ (Zugriff gewähren).
    ![request-permissions](images/tokenRequest3.png)
