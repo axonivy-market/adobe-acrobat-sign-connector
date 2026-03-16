@@ -107,7 +107,7 @@ An API Application needs to be setup at Adobe Sign admin account before OAuth ca
 	 ![application-detail](images/oauth3.png)
 5. Open **Configure OAuth for Application** for your application
 	a. Copy **Redirect URI** from connector's Admin Setup Page and paste it to the Application Configuration
-	b. Enable persmissions that can be requested from this Application
+	b. Enable permissions that can be requested from this Application
 	![application-oauth](images/oauth4.png)
 
 
