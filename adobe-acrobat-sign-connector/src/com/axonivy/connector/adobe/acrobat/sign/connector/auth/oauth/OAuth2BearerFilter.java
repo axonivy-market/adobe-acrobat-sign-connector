@@ -26,7 +26,9 @@ import ch.ivyteam.ivy.rest.client.internal.oauth2.RedirectToIdentityProvider;
 public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilter {
 	private static final String AUTHORIZATION = "Authorization";
 	private static final String BEARER = "Bearer ";
+	private static final String OAUTH2_ERROR_CODE = "ivy:error:rest:client:oauth2";
 	public static final String CODE_PARAM = "code";
+	private static final String CLIENT_ID = "clientId";
 
 	private final OAuth2TokenRequester getToken;
 	private final OAuth2UriProperty uriFactory;
@@ -91,7 +93,7 @@ public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilte
 	}
 
 	String createKey(FeatureConfig config) {
-		Object clientId = config.readMandatory(RestClientFactoryConstants.PROPERTY_CLIENT_ID);
+		Object clientId = config.readMandatory(CLIENT_ID);
 		var key = new StringBuilder((String) clientId);
 		if (property != null) {
 			key.append(TOKEN_SEPARATOR).append(config.readMandatory(property));
@@ -150,6 +152,6 @@ public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilte
 	}
 
 	private static BpmPublicErrorBuilder authError() {
-		return BpmError.create(RedirectToIdentityProvider.OAUTH2_ERROR_CODE);
+		return BpmError.create(OAUTH2_ERROR_CODE);
 	}
 }
