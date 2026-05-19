@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.ws.rs.client.ClientRequestContext;
 import javax.ws.rs.client.ClientRequestFilter;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivyteam.ivy.rest.client.FeatureConfig;
 
