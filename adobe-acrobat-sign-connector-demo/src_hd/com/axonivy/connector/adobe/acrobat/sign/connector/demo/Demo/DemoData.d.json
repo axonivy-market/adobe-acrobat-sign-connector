@@ -1,55 +1,42 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "DemoData",
   "namespace" : "com.axonivy.connector.adobe.acrobat.sign.connector.demo.Demo",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "file",
-    "type" : "File",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "File"
   }, {
-    "name" : "documentId",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "documentId"
   }, {
-    "name" : "agreementId",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "agreementId"
   }, {
-    "name" : "signingURI",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "signingURI"
   }, {
-    "name" : "signer1",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "signer1"
   }, {
-    "name" : "signer2",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "signer2"
   }, {
-    "name" : "authoringURI",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "authoringURI"
   }, {
     "name" : "documents",
-    "type" : "api.rest.v6.client.AgreementDocuments"
+    "type" : "api.rest.v6.client.AgreementDocuments",
+    "modifiers" : [ ]
   }, {
     "name" : "documentContent",
-    "type" : "org.primefaces.model.StreamedContent"
+    "type" : "org.primefaces.model.StreamedContent",
+    "modifiers" : [ ]
   }, {
     "name" : "download",
-    "type" : "com.axonivy.connector.adobe.acrobat.sign.connector.rest.DownloadResult"
+    "type" : "com.axonivy.connector.adobe.acrobat.sign.connector.rest.DownloadResult",
+    "modifiers" : [ ]
   }, {
-    "name" : "filename",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "filename"
   }, {
     "name" : "documentIds",
-    "type" : "java.util.List<String>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<String>"
   }, {
     "name" : "files",
-    "type" : "java.util.List<java.io.File>"
+    "type" : "java.util.List<java.io.File>",
+    "modifiers" : [ ]
   } ]
 }

@@ -1,47 +1,26 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "AdminSetupData",
   "namespace" : "com.axonivy.connector.adobe.acrobat.sign.connector.AdminSetup",
-  "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "host",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "host"
   }, {
-    "name" : "baseUri",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "baseUri"
   }, {
-    "name" : "authenticationUri",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "authenticationUri"
   }, {
-    "name" : "clientId",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "clientId"
   }, {
-    "name" : "clientSecret",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "clientSecret"
   }, {
-    "name" : "permissions",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "permissions"
   }, {
-    "name" : "integrationKey",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "integrationKey"
   }, {
-    "name" : "returnPage",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "returnPage"
   }, {
-    "name" : "oauthToken",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "oauthToken"
   }, {
-    "name" : "accessToken",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "accessToken"
   } ]
 }

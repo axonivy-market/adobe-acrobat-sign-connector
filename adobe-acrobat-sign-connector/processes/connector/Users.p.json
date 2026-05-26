@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
   "id" : "1866EF03C86C6870",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -30,7 +30,7 @@
       "name" : "Get User",
       "config" : {
         "target" : {
-          "clientId" : "83e80d77-749b-4f53-aaf5-a796f2dab100",
+          "clientId" : "Users",
           "path" : "/users"
         },
         "response" : {
