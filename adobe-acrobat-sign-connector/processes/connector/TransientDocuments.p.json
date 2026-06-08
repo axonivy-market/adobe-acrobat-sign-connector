@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.2.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/process.json",
   "id" : "18822D67B169266A",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -49,7 +49,7 @@
       "config" : {
         "method" : "POST",
         "target" : {
-          "clientId" : "6a243983-5f6d-4278-89ec-aab09fea161c",
+          "clientId" : "TransientDocuments",
           "path" : "/transientDocuments"
         },
         "body" : {
@@ -142,7 +142,7 @@
       "config" : {
         "method" : "JAX_RS",
         "target" : {
-          "clientId" : "6a243983-5f6d-4278-89ec-aab09fea161c",
+          "clientId" : "TransientDocuments",
           "path" : "/transientDocuments"
         },
         "body" : {
@@ -243,7 +243,7 @@
       "config" : {
         "method" : "POST",
         "target" : {
-          "clientId" : "6a243983-5f6d-4278-89ec-aab09fea161c",
+          "clientId" : "TransientDocuments",
           "path" : "/transientDocuments"
         },
         "body" : {
@@ -450,7 +450,7 @@
       "config" : {
         "method" : "JAX_RS",
         "target" : {
-          "clientId" : "6a243983-5f6d-4278-89ec-aab09fea161c",
+          "clientId" : "TransientDocuments",
           "path" : "/transientDocuments"
         },
         "body" : {

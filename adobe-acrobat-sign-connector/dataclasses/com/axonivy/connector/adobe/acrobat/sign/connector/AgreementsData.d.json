@@ -1,46 +1,54 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "AgreementsData",
   "namespace" : "com.axonivy.connector.adobe.acrobat.sign.connector",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "agreementCreation",
-    "type" : "api.rest.v6.client.AgreementCreationInfo"
+    "type" : "api.rest.v6.client.AgreementCreationInfo",
+    "modifiers" : [ ]
   }, {
     "name" : "error",
-    "type" : "ch.ivyteam.ivy.bpm.error.BpmError"
+    "type" : "ch.ivyteam.ivy.bpm.error.BpmError",
+    "modifiers" : [ ]
   }, {
     "name" : "agreementCreationResponse",
-    "type" : "api.rest.v6.client.AgreementCreationResponse"
+    "type" : "api.rest.v6.client.AgreementCreationResponse",
+    "modifiers" : [ ]
   }, {
     "name" : "agreementId",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "agreementInfo",
-    "type" : "api.rest.v6.client.AgreementInfo"
+    "type" : "api.rest.v6.client.AgreementInfo",
+    "modifiers" : [ ]
   }, {
     "name" : "signingUrls",
-    "type" : "java.util.List<api.rest.v6.client.SigningUrlResponseSigningUrlSetInfos>"
+    "type" : "java.util.List<api.rest.v6.client.SigningUrlResponseSigningUrlSetInfos>",
+    "modifiers" : [ ]
   }, {
     "name" : "frameParent",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "documents",
-    "type" : "api.rest.v6.client.AgreementDocuments"
+    "type" : "api.rest.v6.client.AgreementDocuments",
+    "modifiers" : [ ]
   }, {
     "name" : "documentId",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "download",
-    "type" : "com.axonivy.connector.adobe.acrobat.sign.connector.rest.DownloadResult"
+    "type" : "com.axonivy.connector.adobe.acrobat.sign.connector.rest.DownloadResult",
+    "modifiers" : [ ]
   }, {
     "name" : "filename",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "asFileOption",
-    "type" : "Boolean"
+    "type" : "Boolean",
+    "modifiers" : [ ]
   }, {
     "name" : "formFieldPutInfo",
-    "type" : "api.rest.v6.client.FormFieldPutInfo"
+    "type" : "api.rest.v6.client.FormFieldPutInfo",
+    "modifiers" : [ ]
   } ]
 }

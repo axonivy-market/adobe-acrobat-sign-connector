@@ -1,10 +1,11 @@
+# yaml-language-server: $schema=https://json-schema.axonivy.com/14.0-dev/config/rest-clients-1.json
 RestClients:
   Users:
-    UUID: 83e80d77-749b-4f53-aaf5-a796f2dab100
+    Name: Users
     Url: https://{host}/api/rest/v6
     Features:
-    - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
-    - com.axonivy.connector.adobe.acrobat.sign.connector.auth.OAuth2Feature
+      - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
+      - com.axonivy.connector.adobe.acrobat.sign.connector.auth.OAuth2Feature
     Properties:
       AUTH.scope: ${ivy.var.adobeAcrobatSignConnector.permissions}
       AUTH.baseUri: ${ivy.var.adobeAcrobatSignConnector.baseUri}
@@ -21,12 +22,13 @@ RestClients:
       SpecUrl: file:///C:/Users/jpl/Downloads/json/REST-SDK-V6-master/json/usersV3.json
       Namespace: api.rest.v6.client
       ResolveFully: true
+    LegacyUUID: 83e80d77-749b-4f53-aaf5-a796f2dab100
   BaseUris:
-    UUID: 9774590a-7adb-4910-8a53-22b68e50d9ed
+    Name: BaseUris
     Url: https://{host}/api/rest/v6
     Features:
-    - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
-    - com.axonivy.connector.adobe.acrobat.sign.connector.auth.OAuth2Feature
+      - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
+      - com.axonivy.connector.adobe.acrobat.sign.connector.auth.OAuth2Feature
     Properties:
       AUTH.scope: ${ivy.var.adobeAcrobatSignConnector.permissions}
       AUTH.baseUri: ${ivy.var.adobeAcrobatSignConnector.baseUri}
@@ -40,12 +42,13 @@ RestClients:
     OpenAPI:
       SpecUrl: file:///C:/Users/jpl/Downloads/json/REST-SDK-V6-master/json/baseUrisV3.json
       Namespace: api.rest.v6.client
+    LegacyUUID: 9774590a-7adb-4910-8a53-22b68e50d9ed
   Agreements:
-    UUID: 8e96fab1-4701-47cb-ae35-d821bb12305b
+    Name: Agreements
     Url: https://{host}/api/rest/v6
     Features:
-    - com.axonivy.connector.adobe.acrobat.sign.connector.json.OpenApiJsonFeature
-    - com.axonivy.connector.adobe.acrobat.sign.connector.auth.OAuth2Feature
+      - com.axonivy.connector.adobe.acrobat.sign.connector.json.OpenApiJsonFeature
+      - com.axonivy.connector.adobe.acrobat.sign.connector.auth.OAuth2Feature
     Properties:
       AUTH.scope: ${ivy.var.adobeAcrobatSignConnector.permissions}
       AUTH.baseUri: ${ivy.var.adobeAcrobatSignConnector.baseUri}
@@ -60,13 +63,14 @@ RestClients:
       SpecUrl: file:///C:/Users/jpl/OneDrive%20-%20Docuware%20GmbH/data/Projekte/Ricoh/HR%20Transformation/Adobe%20Sign/agreementsV2.json
       Namespace: api.rest.v6.client
       ResolveFully: true
+    LegacyUUID: 8e96fab1-4701-47cb-ae35-d821bb12305b
   TransientDocuments:
-    UUID: 6a243983-5f6d-4278-89ec-aab09fea161c
+    Name: TransientDocuments
     Url: https://{host}/api/rest/v6
     Features:
-    - org.glassfish.jersey.media.multipart.MultiPartFeature
-    - com.axonivy.connector.adobe.acrobat.sign.connector.auth.OAuth2Feature
-    - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
+      - org.glassfish.jersey.media.multipart.MultiPartFeature
+      - com.axonivy.connector.adobe.acrobat.sign.connector.auth.OAuth2Feature
+      - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
     Properties:
       AUTH.scope: ${ivy.var.adobeAcrobatSignConnector.permissions}
       AUTH.baseUri: ${ivy.var.adobeAcrobatSignConnector.baseUri}
@@ -81,3 +85,4 @@ RestClients:
       SpecUrl: file:///C:/tmp/ricoh/adobe/transientDocumentsV2.json
       Namespace: api.rest.v6.client
       ResolveFully: true
+    LegacyUUID: 6a243983-5f6d-4278-89ec-aab09fea161c

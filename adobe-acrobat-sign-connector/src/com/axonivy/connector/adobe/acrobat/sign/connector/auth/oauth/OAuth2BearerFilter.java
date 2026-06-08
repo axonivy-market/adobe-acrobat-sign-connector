@@ -15,16 +15,14 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.connector.adobe.acrobat.sign.connector.auth.oauth.OAuth2TokenRequester.AuthContext;
 import com.axonivy.connector.adobe.acrobat.sign.connector.enums.AdobeVariable;
 
-import ch.ivyteam.ivy.bpm.error.BpmError;
 import ch.ivyteam.ivy.bpm.error.BpmPublicErrorBuilder;
 import ch.ivyteam.ivy.request.IRequest;
 import ch.ivyteam.ivy.rest.client.FeatureConfig;
+import ch.ivyteam.ivy.rest.client.oauth2.OAuth2Error;
 
-@SuppressWarnings("restriction")
 public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilter {
 	private static final String AUTHORIZATION = "Authorization";
 	private static final String BEARER = "Bearer ";
-	private static final String OAUTH2_ERROR_CODE = "ivy:error:rest:client:oauth2";
 	public static final String CODE_PARAM = "code";
 	private static final String CLIENT_ID = "clientId";
 
@@ -150,6 +148,6 @@ public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilte
 	}
 
 	private static BpmPublicErrorBuilder authError() {
-		return BpmError.create(OAUTH2_ERROR_CODE);
+		return OAuth2Error.build();
 	}
 }

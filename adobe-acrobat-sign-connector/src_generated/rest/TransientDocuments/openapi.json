@@ -1,0 +1,102 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "secure.eu2.echosign.com",
+    "version": "6.0.0"
+  },
+  "host": "secure.eu2.echosign.com",
+  "basePath": "/api/rest/v6",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/transientDocuments": {
+      "post": {
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "An <a href=\"#\" class=\"link-oauth\">OAuth Access Token</a> with any of the following scopes:<ul><li style='list-style-type: square'><a href=\"#\" class=\"link-oauth\" data-link-scope=\"scope-agreement_write\">agreement_write</a></li><li style='list-style-type: square'><a href=\"#\" class=\"link-oauth\" data-link-scope=\"scope-agreement_sign\">agreement_sign</a></li><li style='list-style-type: square'><a href=\"#\" class=\"link-oauth\" data-link-scope=\"scope-widget_write\">widget_write</a></li><li style='list-style-type: square'><a href=\"#\" class=\"link-oauth\" data-link-scope=\"scope-library_write\">library_write</a></li></ul>in the format <b>'Bearer {accessToken}'.",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The userId or email of API caller using the account or group token in the format <b>userid:{userId} OR email:{email}.</b> If it is not specified, then the caller is inferred from the token.",
+            "in": "header",
+            "name": "x-api-user",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The userId or email in the format <b>userid:{userId} OR email:{email}.</b> of the user that has shared his/her account",
+            "in": "header",
+            "name": "x-on-behalf-of-user",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A name for the document being uploaded. Maximum number of characters in the name is restricted to 255.",
+            "in": "formData",
+            "name": "File-Name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The mime type of the document being uploaded. If not specified here then mime type is picked up from the file object. If mime type is not present there either then mime type is inferred from file name extension.",
+            "in": "formData",
+            "name": "Mime-Type",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The file part of the multipart request for document upload. You can upload only one file at a time.",
+            "in": "formData",
+            "name": "File",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response was specified",
+            "schema": {
+              "$ref": "#/definitions/TransientDocumentResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "agreement_write",
+              "agreement_sign",
+              "widget_write",
+              "library_write"
+            ]
+          }
+        ],
+        "description": "The document uploaded through this call is referred to as transient since it is available only for 7 days after the upload. The returned transient document ID can be used in the API calls where the uploaded file needs to be referred. The transient document request is a multipart request consisting of three parts - filename, mime type and the file stream. You can only upload one file at a time in this request.",
+        "operationId": "createTransientDocument",
+        "summary": "Uploads a document and obtains the document's ID."
+      }
+    }
+  },
+  "definitions": {
+    "TransientDocumentResponse": {
+      "properties": {
+        "transientDocumentId": {
+          "description": "The unique identifier of the uploaded document that can be used in an agreement or a bulk send or web form creation call",
+          "type": "string"
+        }
+      },
+      "required": [
+        "transientDocumentId"
+      ]
+    }
+  }
+}

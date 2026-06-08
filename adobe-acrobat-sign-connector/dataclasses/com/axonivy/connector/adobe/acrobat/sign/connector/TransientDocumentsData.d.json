@@ -1,28 +1,33 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
   "simpleName" : "TransientDocumentsData",
   "namespace" : "com.axonivy.connector.adobe.acrobat.sign.connector",
-  "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "file",
-    "type" : "java.io.File"
+    "type" : "java.io.File",
+    "modifiers" : [ ]
   }, {
     "name" : "id",
-    "type" : "String"
+    "modifiers" : [ ]
   }, {
     "name" : "error",
-    "type" : "ch.ivyteam.ivy.bpm.error.BpmError"
+    "type" : "ch.ivyteam.ivy.bpm.error.BpmError",
+    "modifiers" : [ ]
   }, {
     "name" : "upload",
-    "type" : "com.axonivy.connector.adobe.acrobat.sign.connector.rest.UploadWrapper"
+    "type" : "com.axonivy.connector.adobe.acrobat.sign.connector.rest.UploadWrapper",
+    "modifiers" : [ ]
   }, {
     "name" : "files",
-    "type" : "java.util.List<java.io.File>"
+    "type" : "java.util.List<java.io.File>",
+    "modifiers" : [ ]
   }, {
     "name" : "ids",
-    "type" : "java.util.List<String>"
+    "type" : "java.util.List<String>",
+    "modifiers" : [ ]
   }, {
     "name" : "uploadWrappers",
-    "type" : "java.util.List<com.axonivy.connector.adobe.acrobat.sign.connector.rest.UploadWrapper>"
+    "type" : "java.util.List<com.axonivy.connector.adobe.acrobat.sign.connector.rest.UploadWrapper>",
+    "modifiers" : [ ]
   } ]
 }
