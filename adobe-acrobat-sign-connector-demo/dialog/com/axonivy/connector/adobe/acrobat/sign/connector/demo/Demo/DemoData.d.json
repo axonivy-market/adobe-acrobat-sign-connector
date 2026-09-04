@@ -1,0 +1,51 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "simpleName" : "DemoData",
+  "namespace" : "com.axonivy.connector.adobe.acrobat.sign.connector.demo.Demo",
+  "fields" : [ {
+    "name" : "file",
+    "type" : "File",
+    "modifiers" : [ ]
+  }, {
+    "name" : "documentId",
+    "modifiers" : [ ]
+  }, {
+    "name" : "agreementId",
+    "modifiers" : [ ]
+  }, {
+    "name" : "signingURI",
+    "modifiers" : [ ]
+  }, {
+    "name" : "signer1",
+    "modifiers" : [ ]
+  }, {
+    "name" : "signer2",
+    "modifiers" : [ ]
+  }, {
+    "name" : "authoringURI",
+    "modifiers" : [ ]
+  }, {
+    "name" : "documents",
+    "type" : "api.rest.v6.client.AgreementDocuments",
+    "modifiers" : [ ]
+  }, {
+    "name" : "documentContent",
+    "type" : "org.primefaces.model.StreamedContent",
+    "modifiers" : [ ]
+  }, {
+    "name" : "download",
+    "type" : "com.axonivy.connector.adobe.acrobat.sign.connector.rest.DownloadResult",
+    "modifiers" : [ ]
+  }, {
+    "name" : "filename",
+    "modifiers" : [ ]
+  }, {
+    "name" : "documentIds",
+    "type" : "java.util.List<String>",
+    "modifiers" : [ ]
+  }, {
+    "name" : "files",
+    "type" : "java.util.List<java.io.File>",
+    "modifiers" : [ ]
+  } ]
+}

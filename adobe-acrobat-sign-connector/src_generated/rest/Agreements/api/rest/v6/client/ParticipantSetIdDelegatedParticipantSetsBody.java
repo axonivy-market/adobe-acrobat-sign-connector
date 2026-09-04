@@ -25,7 +25,7 @@ import java.util.List;
  * ParticipantSetIdDelegatedParticipantSetsBody
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-06-19T08:55:29.579198300+02:00[Europe/Vienna]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-06-19T08:55:29.579198300+02:00[Europe/Vienna]")
 public class ParticipantSetIdDelegatedParticipantSetsBody {
   @JsonProperty("memberInfos")
   private List<AgreementsagreementIdmembersparticipantSetsparticipantSetIddelegatedParticipantSetsMemberInfos> memberInfos = null;

@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * A JSON  that contains both the id of the newly created agreement and URL / embedded code to direct the user to tne next step in the creation process.
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-06-19T08:55:29.579198300+02:00[Europe/Vienna]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-06-19T08:55:29.579198300+02:00[Europe/Vienna]")
 public class AgreementCreationResponse {
   @JsonProperty("id")
   private String id = null;

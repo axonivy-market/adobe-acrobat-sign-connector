@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Additional information for agreements that require notarization
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-06-19T08:55:29.579198300+02:00[Europe/Vienna]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-06-19T08:55:29.579198300+02:00[Europe/Vienna]")
 public class NotaryInfo {
   @JsonProperty("appointment")
   private String appointment = null;

@@ -2,8 +2,8 @@ package com.axonivy.connector.adobe.acrobat.sign.connector.auth.oauth;
 
 import java.util.Optional;
 
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Response;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.Response;
 
 import ch.ivyteam.ivy.rest.client.FeatureConfig;
 import ch.ivyteam.ivy.rest.client.oauth2.uri.OAuth2UriProvider;

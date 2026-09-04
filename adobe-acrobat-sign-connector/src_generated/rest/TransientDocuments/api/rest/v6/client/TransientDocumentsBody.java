@@ -23,7 +23,7 @@ import java.io.File;
  * TransientDocumentsBody
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-05-16T07:38:44.543607900+02:00[Europe/Vienna]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-05-16T07:38:44.543607900+02:00[Europe/Vienna]")
 public class TransientDocumentsBody {
   @JsonProperty("File-Name")
   private String fileName = null;

@@ -23,7 +23,7 @@ import java.time.LocalDate;
  * AgreementViewsAgreementViewList
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-06-19T08:55:29.579198300+02:00[Europe/Vienna]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-06-19T08:55:29.579198300+02:00[Europe/Vienna]")
 public class AgreementViewsAgreementViewList {
   @JsonProperty("embeddedCode")
   private String embeddedCode = null;

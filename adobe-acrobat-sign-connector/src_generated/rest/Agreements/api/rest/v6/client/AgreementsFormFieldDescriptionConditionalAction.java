@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Conditional actions to perfom on this form field.
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-06-19T08:55:29.579198300+02:00[Europe/Vienna]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-06-19T08:55:29.579198300+02:00[Europe/Vienna]")
 public class AgreementsFormFieldDescriptionConditionalAction {
   /**
    * Action to show/hide the form field is to be taken on the basis of evaluation of conditions.
