@@ -71,7 +71,7 @@
         "signature" : "preRender",
         "input" : {
           "params" : [
-            { "name" : "event", "type" : "javax.faces.event.ComponentSystemEvent", "desc" : "" }
+            { "name" : "event", "type" : "jakarta.faces.event.ComponentSystemEvent", "desc" : "" }
           ],
           "map" : { }
         },
