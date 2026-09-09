@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientRequestContext;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.Response.Status.Family;
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientRequestContext;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.Response.Status.Family;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -20,7 +20,7 @@ import ch.ivyteam.ivy.request.IRequest;
 import ch.ivyteam.ivy.rest.client.FeatureConfig;
 import ch.ivyteam.ivy.rest.client.oauth2.OAuth2Error;
 
-public class OAuth2BearerFilter implements javax.ws.rs.client.ClientRequestFilter {
+public class OAuth2BearerFilter implements jakarta.ws.rs.client.ClientRequestFilter {
 	private static final String AUTHORIZATION = "Authorization";
 	private static final String BEARER = "Bearer ";
 	public static final String CODE_PARAM = "code";

@@ -1,0 +1,36 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/14.0-dev/project/data-class.json",
+  "simpleName" : "AdminSetupData",
+  "namespace" : "com.axonivy.connector.adobe.acrobat.sign.connector.AdminSetup",
+  "fields" : [ {
+    "name" : "host",
+    "modifiers" : [ ]
+  }, {
+    "name" : "baseUri",
+    "modifiers" : [ ]
+  }, {
+    "name" : "authenticationUri",
+    "modifiers" : [ ]
+  }, {
+    "name" : "clientId",
+    "modifiers" : [ ]
+  }, {
+    "name" : "clientSecret",
+    "modifiers" : [ ]
+  }, {
+    "name" : "permissions",
+    "modifiers" : [ ]
+  }, {
+    "name" : "integrationKey",
+    "modifiers" : [ ]
+  }, {
+    "name" : "returnPage",
+    "modifiers" : [ ]
+  }, {
+    "name" : "oauthToken",
+    "modifiers" : [ ]
+  }, {
+    "name" : "accessToken",
+    "modifiers" : [ ]
+  } ]
+}

@@ -2,28 +2,27 @@ package com.axonivy.connector.adobe.acrobat.sign.connector.test;
 
 import static com.axonivy.utils.e2etest.enums.E2EEnvironment.REAL_SERVER;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
 import com.axonivy.connector.adobe.acrobat.sign.connector.test.constants.AdobeTestConstants;
 import com.axonivy.utils.e2etest.utils.E2ETestUtils;
 
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.AppFixture;
-import ch.ivyteam.ivy.rest.client.RestClient;
-import ch.ivyteam.ivy.rest.client.RestClientFeature;
-import ch.ivyteam.ivy.rest.client.RestClients;
-import ch.ivyteam.ivy.rest.client.RestClient.Builder;
 
 public abstract class BaseSetup {
   public abstract String getClientName();
 
+  protected abstract List<String> getClientFeatures();
+
   protected boolean isRealTest;
 
   @BeforeEach
-  public void beforeEach(ExtensionContext context, AppFixture fixture, IApplication app) {
+  public void beforeEach(ExtensionContext context, AppFixture fixture) {
     isRealTest = context.getDisplayName().equals(REAL_SERVER.getDisplayName());
-    E2ETestUtils.determineConfigForContext(context.getDisplayName(), runRealEnv(fixture), runMockEnv(fixture, app));
+    E2ETestUtils.determineConfigForContext(context.getDisplayName(), runRealEnv(fixture), runMockEnv(fixture));
   }
 
   protected Runnable runRealEnv(AppFixture fixture) {
@@ -38,23 +37,13 @@ public abstract class BaseSetup {
     };
   }
 
-  protected Runnable runMockEnv(AppFixture fixture, IApplication app) {
+  protected Runnable runMockEnv(AppFixture fixture) {
     return () -> {
       fixture.var("adobeAcrobatSignConnector.host", "TESTHOST");
       fixture.var("adobeAcrobatSignConnector.integrationKey", "TESTUSER");
-      RestClient restClient = RestClients.of(app).find(getClientName());
-      // change created client: use test url and a slightly different version of the DocuWare Auth feature
-      Builder builder = RestClient.create(restClient.name()).uuid(restClient.uniqueId())
-          .uri("http://{ivy.engine.host}:{ivy.engine.http.port}/{ivy.request.application}/api/adobeSignMock")
-          .description(restClient.description()).properties(restClient.properties());
-
-      for (RestClientFeature feature : restClient.features()) {
-        builder.feature(feature.clazz());
-      }
-
-      builder.feature("ch.ivyteam.ivy.rest.client.security.CsrfHeaderFeature");
-      restClient = builder.toRestClient();
-      RestClients.of(app).set(restClient);
+      fixture.config("RestClients." + getClientName() + ".Url",
+          "http://{ivy.engine.host}:{ivy.engine.http.port}/{ivy.request.application}/api/adobeSignMock");
+      fixture.config("RestClients." + getClientName() + ".Features", getClientFeatures());
     };
   }
 }

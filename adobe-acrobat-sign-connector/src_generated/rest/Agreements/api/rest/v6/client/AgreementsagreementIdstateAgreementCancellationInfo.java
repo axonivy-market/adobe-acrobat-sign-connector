@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * AgreementsagreementIdstateAgreementCancellationInfo
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-06-19T08:55:29.579198300+02:00[Europe/Vienna]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-06-19T08:55:29.579198300+02:00[Europe/Vienna]")
 public class AgreementsagreementIdstateAgreementCancellationInfo {
   @JsonProperty("comment")
   private String comment = null;

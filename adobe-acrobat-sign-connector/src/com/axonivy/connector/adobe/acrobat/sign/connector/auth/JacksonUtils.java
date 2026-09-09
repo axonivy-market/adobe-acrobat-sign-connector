@@ -1,16 +1,16 @@
 package com.axonivy.connector.adobe.acrobat.sign.connector.auth;
 
-import javax.ws.rs.core.MediaType;
-
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import ch.ivyteam.ivy.environment.Ivy;
+import jakarta.ws.rs.core.MediaType;
+import tools.jackson.databind.MapperFeature;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.jakarta.rs.json.JacksonJsonProvider;
 
 public class JacksonUtils {
 	private static final JaxRsClientJson JAXRS_CLIENT_JSON = new JaxRsClientJson();
@@ -31,16 +31,14 @@ public class JacksonUtils {
 
 	private static class JaxRsClientJson extends JacksonJsonProvider {
 		@Override
-		public ObjectMapper locateMapper(Class<?> type, MediaType mediaType) {
-			ObjectMapper mapper = super.locateMapper(type, mediaType);
-			// match our generated jax-rs client beans: that contain JSR310 data types
-			mapper.registerModule(new com.fasterxml.jackson.datatype.jsr310.JavaTimeModule());
-			// allow fields starting with an upper case character (e.g. in ODATA specs)!
-			mapper.setConfig(mapper.getDeserializationConfig().with(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES));
-			// not sending this optional value seems to be lass prone to errors for some
-			// remote services.
-			mapper.setSerializationInclusion(Include.NON_NULL);
-			return mapper;
+		public JsonMapper locateMapper(Class<?> type, MediaType mediaType) {
+			return super.locateMapper(type, mediaType).rebuild()
+					// Accept generated API fields regardless of their JSON name casing.
+					.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
+					// Omit optional null values from requests to remote services.
+					.changeDefaultPropertyInclusion(_ -> com.fasterxml.jackson.annotation.JsonInclude.Value.construct(
+							Include.NON_NULL, Include.NON_NULL))
+					.build();
 		}
 	}
 

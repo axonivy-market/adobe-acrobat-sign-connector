@@ -523,10 +523,11 @@ public class AdobeSignService {
 	/**
 	 * Extracts the base url from actual request.
 	 * Example: https://www.demo.com/
+	 * 
 	 * @return
 	 */
 	private String getRequestBaseUrl() {
-		return Ivy.html().applicationHomeLink().getAbsolute().replace(Ivy.request().getApplication().getContextPath(), "");
+		return Ivy.html().appHomeLink().getAbsolute().replace(Ivy.request().getApplication().contextPath(), "");
 	}
 
 }

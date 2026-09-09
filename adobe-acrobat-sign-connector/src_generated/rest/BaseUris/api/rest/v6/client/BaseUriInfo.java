@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * BaseUriInfo
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-02-20T14:20:33.913692600+01:00[Europe/Vienna]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-02-20T14:20:33.913692600+01:00[Europe/Vienna]")
 public class BaseUriInfo {
   @JsonProperty("apiAccessPoint")
   private String apiAccessPoint = null;

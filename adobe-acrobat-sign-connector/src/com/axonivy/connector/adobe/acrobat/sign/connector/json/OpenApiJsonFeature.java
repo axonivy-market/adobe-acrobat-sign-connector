@@ -1,12 +1,11 @@
 package com.axonivy.connector.adobe.acrobat.sign.connector.json;
 
-import javax.ws.rs.Priorities;
-import javax.ws.rs.core.FeatureContext;
-
 import com.axonivy.connector.adobe.acrobat.sign.connector.auth.JacksonUtils;
-import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 import ch.ivyteam.ivy.rest.client.mapper.JsonFeature;
+import jakarta.ws.rs.Priorities;
+import jakarta.ws.rs.core.FeatureContext;
+import tools.jackson.jakarta.rs.json.JacksonJsonProvider;
 
 /**
  * JSON object mapper that complies with generated JAX-RS client pojos.

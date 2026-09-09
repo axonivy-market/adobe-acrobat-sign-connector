@@ -25,7 +25,7 @@ import java.util.List;
  * InlineResponse2004
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-02-20T14:44:07.024613500+01:00[Europe/Vienna]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2023-02-20T14:44:07.024613500+01:00[Europe/Vienna]")
 public class InlineResponse2004 {
   @JsonProperty("userViewList")
   private List<UserViewResponseUserViewList> userViewList = new ArrayList<>();

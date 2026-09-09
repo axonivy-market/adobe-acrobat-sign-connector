@@ -1,13 +1,14 @@
 package com.axonivy.connector.adobe.acrobat.sign.connector.ui;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import java.io.Serializable;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import api.rest.v6.client.AgreementDocuments;
 
-@ManagedBean
+@Named
 @ViewScoped
-public class SigningBean {
+public class SigningBean implements Serializable {
 
 	private String agreementId;
 	private String documentId;

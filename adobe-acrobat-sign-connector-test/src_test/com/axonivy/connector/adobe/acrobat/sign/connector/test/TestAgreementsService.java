@@ -1,19 +1,19 @@
 package com.axonivy.connector.adobe.acrobat.sign.connector.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
+import com.axonivy.connector.adobe.acrobat.sign.connector.AgreementsData;
 import com.axonivy.connector.adobe.acrobat.sign.connector.rest.DownloadResult;
 import com.axonivy.connector.adobe.acrobat.sign.connector.service.AdobeSignService;
 import com.axonivy.utils.e2etest.context.MultiEnvironmentContextProvider;
-import com.axonivy.connector.adobe.acrobat.sign.connector.AgreementsData;
 
 import api.rest.v6.client.AgreementCreationInfo;
 import api.rest.v6.client.AgreementCreationInfo.SignatureTypeEnum;
@@ -22,44 +22,35 @@ import api.rest.v6.client.AgreementCreationInfoParticipantSetsInfo.RoleEnum;
 import api.rest.v6.client.AgreementCreationResponse;
 import api.rest.v6.client.AgreementDocuments;
 import api.rest.v6.client.SigningUrlResponseSigningUrlSetInfos;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.bpm.engine.client.BpmClient;
 import ch.ivyteam.ivy.bpm.engine.client.ExecutionResult;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmElement;
 import ch.ivyteam.ivy.bpm.engine.client.element.BpmProcess;
 import ch.ivyteam.ivy.bpm.exec.client.IvyProcessTest;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.rest.client.RestClients;
 
 @IvyProcessTest(enableWebServer = true)
 @ExtendWith(MultiEnvironmentContextProvider.class)
 public class TestAgreementsService extends BaseSetup {
 
   protected static final String AGREEMENTS = "Agreements";
-  private static final BpmElement testeeCreateAgreement =
-      BpmProcess.path("connector/Agreements").elementName("createAgreement(AgreementCreationInfo)");
+  private static final BpmElement testeeCreateAgreement = BpmProcess.path("connector/Agreements")
+      .elementName("createAgreement(AgreementCreationInfo)");
 
-  private static final BpmElement testeeGetDocuments =
-      BpmProcess.path("connector/Agreements").elementName("getDocuments(String)");
+  private static final BpmElement testeeGetDocuments = BpmProcess.path("connector/Agreements")
+      .elementName("getDocuments(String)");
 
-  private static final BpmElement testeeDownloadDocument =
-      BpmProcess.path("connector/Agreements").elementName("dowloadDocument(String, String, String, Boolean)");
+  private static final BpmElement testeeDownloadDocument = BpmProcess.path("connector/Agreements")
+      .elementName("dowloadDocument(String, String, String, Boolean)");
 
-  private static final BpmElement testeeGetSigningUrls =
-      BpmProcess.path("connector/Agreements").elementName("getSigningURLs(String,String)");
-
-
-  @AfterEach
-  void afterEach(IApplication app) {
-    RestClients clients = RestClients.of(app);
-    clients.remove(AGREEMENTS);
-  }
+  private static final BpmElement testeeGetSigningUrls = BpmProcess.path("connector/Agreements")
+      .elementName("getSigningURLs(String,String)");
 
   @TestTemplate
   public void createAgreement(BpmClient bpmClient, ExtensionContext context) throws IOException {
     AgreementCreationInfo agreement = createTestAgreement();
-    ExecutionResult result =
-        bpmClient.start().subProcess(testeeCreateAgreement).withParam("agreement", agreement).execute();
+    ExecutionResult result = bpmClient.start().subProcess(testeeCreateAgreement).withParam("agreement", agreement)
+        .execute();
     AgreementsData data = result.data().last();
     if (isRealTest) {
       int error = (int) data.getError().getAttribute("RestClientResponseStatusCode");
@@ -75,8 +66,8 @@ public class TestAgreementsService extends BaseSetup {
   public void getDocuments(BpmClient bpmClient, ExtensionContext context) throws IOException {
     String agreementId = "test-agreement-id";
 
-    ExecutionResult result =
-        bpmClient.start().subProcess(testeeGetDocuments).withParam("agreementId", agreementId).execute();
+    ExecutionResult result = bpmClient.start().subProcess(testeeGetDocuments).withParam("agreementId", agreementId)
+        .execute();
     AgreementsData data = result.data().last();
     if (isRealTest) {
       int error = (int) data.getError().getAttribute("RestClientResponseStatusCode");
@@ -149,5 +140,13 @@ public class TestAgreementsService extends BaseSetup {
   @Override
   public String getClientName() {
     return AGREEMENTS;
+  }
+
+  @Override
+  protected List<String> getClientFeatures() {
+    return List.of(
+        "com.axonivy.connector.adobe.acrobat.sign.connector.json.OpenApiJsonFeature",
+        "com.axonivy.connector.adobe.acrobat.sign.connector.auth.OAuth2Feature",
+        "ch.ivyteam.ivy.rest.client.security.CsrfHeaderFeature");
   }
 }

@@ -1,7 +1,6 @@
 package com.axonivy.connector.adobe.acrobat.sign.connector.util;
 
 import static org.apache.commons.lang3.StringUtils.EMPTY;
-import static org.apache.commons.lang3.StringUtils.equalsIgnoreCase;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 import java.util.List;
@@ -39,7 +38,7 @@ public class AdobeSignUtils {
 		}
 		for (var signingInfos : responseSigningUrlSetInfos) {
 			for (var signingUrls : CollectionUtils.emptyIfNull(signingInfos.getSigningUrls())) {
-				if (equalsIgnoreCase(signingUrls.getEmail(), signerEmail)) {
+				if (signerEmail.equalsIgnoreCase(signingUrls.getEmail())) {
 					signingURI = signingUrls.getEsignUrl();
 				}
 			}
