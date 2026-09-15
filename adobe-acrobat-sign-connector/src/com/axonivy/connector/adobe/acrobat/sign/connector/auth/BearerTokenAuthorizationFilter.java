@@ -7,7 +7,7 @@ import jakarta.ws.rs.client.ClientRequestFilter;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivyteam.ivy.rest.client.FeatureConfig;
+import ch.ivyteam.ivy.rest.client.feature.FeatureConfig;
 
 public class BearerTokenAuthorizationFilter implements ClientRequestFilter {
 
@@ -17,7 +17,7 @@ public class BearerTokenAuthorizationFilter implements ClientRequestFilter {
 
 	@Override
 	public void filter(ClientRequestContext requestContext) throws IOException {
-		FeatureConfig config = new FeatureConfig(requestContext.getConfiguration(), BearerTokenAuthorizationFilter.class);
+		FeatureConfig config = FeatureConfig.of(requestContext.getConfiguration(), BearerTokenAuthorizationFilter.class);
 		String integrationKey = config.readMandatory(INTEGRATIONKEY);
 		if (StringUtils.isNotBlank(integrationKey)) {
 			requestContext.getHeaders().add(AUTHORIZATION, BEARER + integrationKey);

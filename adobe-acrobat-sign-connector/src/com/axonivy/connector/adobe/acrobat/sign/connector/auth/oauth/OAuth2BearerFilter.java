@@ -17,7 +17,7 @@ import com.axonivy.connector.adobe.acrobat.sign.connector.enums.AdobeVariable;
 
 import ch.ivyteam.ivy.bpm.error.BpmPublicErrorBuilder;
 import ch.ivyteam.ivy.request.IRequest;
-import ch.ivyteam.ivy.rest.client.FeatureConfig;
+import ch.ivyteam.ivy.rest.client.feature.FeatureConfig;
 import ch.ivyteam.ivy.rest.client.oauth2.OAuth2Error;
 
 public class OAuth2BearerFilter implements jakarta.ws.rs.client.ClientRequestFilter {
@@ -55,7 +55,7 @@ public class OAuth2BearerFilter implements jakarta.ws.rs.client.ClientRequestFil
 	}
 
 	protected final String getAccessToken(ClientRequestContext context) {
-		FeatureConfig config = new FeatureConfig(context.getConfiguration(), getSource());
+		FeatureConfig config = FeatureConfig.of(context.getConfiguration(), getSource());
 		VarTokenStore refreshTokenStore = VarTokenStore.get(REFRESH_TOKEN_VAR.getVariableName());
 		var refreshToken = refreshTokenStore.getToken();
 
