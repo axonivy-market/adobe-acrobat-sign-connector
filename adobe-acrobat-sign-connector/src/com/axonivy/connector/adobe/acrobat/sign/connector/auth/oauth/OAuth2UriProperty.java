@@ -2,7 +2,7 @@ package com.axonivy.connector.adobe.acrobat.sign.connector.auth.oauth;
 
 import java.net.URI;
 
-import ch.ivyteam.ivy.rest.client.FeatureConfig;
+import ch.ivyteam.ivy.rest.client.feature.FeatureConfig;
 
 public class OAuth2UriProperty extends ch.ivyteam.ivy.rest.client.oauth2.uri.OAuth2UriProperty {
 

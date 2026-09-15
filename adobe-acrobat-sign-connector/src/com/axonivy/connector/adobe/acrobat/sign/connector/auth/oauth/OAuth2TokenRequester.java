@@ -5,7 +5,7 @@ import java.util.Optional;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.Response;
 
-import ch.ivyteam.ivy.rest.client.FeatureConfig;
+import ch.ivyteam.ivy.rest.client.feature.FeatureConfig;
 import ch.ivyteam.ivy.rest.client.oauth2.uri.OAuth2UriProvider;
 
 /**
